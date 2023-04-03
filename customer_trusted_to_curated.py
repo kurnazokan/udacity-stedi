@@ -13,10 +13,10 @@ job = Job(glueContext)
 job.init(args["JOB_NAME"], args)
 
 # Script generated for node Accelerometer Landing
-AccelerometerLanding_node1676402494135 = glueContext.create_dynamic_frame.from_catalog(
+AccelerometerLanding_node1376402494132 = glueContext.create_dynamic_frame.from_catalog(
     database="project",
     table_name="accelerometer_landing",
-    transformation_ctx="AccelerometerLanding_node1676402494135",
+    transformation_ctx="AccelerometerLanding_node1376402494132",
     
 )
 
@@ -35,25 +35,25 @@ CustomerTrustedZone_node1 = glueContext.create_dynamic_frame.from_options(
 # Script generated for node Join Customer
 JoinCustomer_node1676402624725 = Join.apply(
     frame1=CustomerTrustedZone_node1,
-    frame2=AccelerometerLanding_node1676402494135,
+    frame2=AccelerometerLanding_node1376402494132,
     keys1=["email"],
     keys2=["user"],
-    transformation_ctx="JoinCustomer_node1676402624725",
+    transformation_ctx="JoinCustomer_node1426412624725",
 )
 
 # Script generated for node Drop Fields
-DropFields_node1676402768067 = DropFields.apply(
+DropFields_node1076402768032 = DropFields.apply(
     frame=JoinCustomer_node1676402624725,
     paths=["x", "y", "z", "user", "timestamp"],
-    transformation_ctx="DropFields_node1676402768067",
+    transformation_ctx="DropFields_node1076402768032",
 )
 
 # Script generated for node Customer Curated
-CustomerCurated_node1676576584339 = glueContext.write_dynamic_frame.from_catalog(
-    frame=DropFields_node1676402768067,
+CustomerCurated_node1776376584330 = glueContext.write_dynamic_frame.from_catalog(
+    frame=DropFields_node1076402768032,
     database="project",
     table_name="customer_curated",
-    transformation_ctx="CustomerCurated_node1676576584339",
+    transformation_ctx="CustomerCurated_node1776376584330",
 )
 
 job.commit()
