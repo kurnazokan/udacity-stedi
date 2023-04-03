@@ -34,11 +34,11 @@ ApplyMapping_node2 = Filter.apply(
 )
 
 # Script generated for node AWS Glue Data Catalog
-AWSGlueDataCatalog_node1676574309040 = glueContext.write_dynamic_frame.from_catalog(
+AWSGlueDataCatalog_node1673574309040 = glueContext.write_dynamic_frame.from_catalog(
     frame=ApplyMapping_node2,
     database="project",
     table_name="customer_trusted",
-    transformation_ctx="AWSGlueDataCatalog_node1676574309040",
+    transformation_ctx="AWSGlueDataCatalog_node1673574309040",
 )
 
 job.commit()
