@@ -14,10 +14,10 @@ job.init(args["JOB_NAME"], args)
 
 # Script generated for node Accelerometer Landing
 # Poor
-AccelerometerLanding_node1676402494135 = glueContext.create_dynamic_frame.from_catalog(
+AccelerometerLanding_node1678402494134 = glueContext.create_dynamic_frame.from_catalog(
     database="project",
     table_name="accelerometer_landing",
-    transformation_ctx="AccelerometerLanding_node1676402494135",
+    transformation_ctx="AccelerometerLanding_node1678402494134",
 )
 
 # Script generated for node Customer Trusted Zone
@@ -33,17 +33,17 @@ CustomerTrustedZone_node1 = glueContext.create_dynamic_frame.from_options(
 )
 
 # Script generated for node Join Customer
-JoinCustomer_node1676402624725 = Join.apply(
+JoinCustomer_node1276402623724 = Join.apply(
     frame1=CustomerTrustedZone_node1,
-    frame2=AccelerometerLanding_node1676402494135,
+    frame2=AccelerometerLanding_node1678402494134,
     keys1=["email"],
     keys2=["user"],
-    transformation_ctx="JoinCustomer_node1676402624725",
+    transformation_ctx="JoinCustomer_node1276402623724",
 )
 
 # Script generated for node Drop Fields
-DropFields_node1676402768067 = DropFields.apply(
-    frame=JoinCustomer_node1676402624725,
+DropFields_node1376402728068 = DropFields.apply(
+    frame=JoinCustomer_node1276402623724,
     paths=[
         "serialNumber",
         "shareWithPublicAsOfDate",
@@ -57,12 +57,12 @@ DropFields_node1676402768067 = DropFields.apply(
         "shareWithFriendsAsOfDate",
         "timestamp",
     ],
-    transformation_ctx="DropFields_node1676402768067",
+    transformation_ctx="DropFields_node1376402728068",
 )
 
 # Script generated for node AWS Glue Data Catalog
-AWSGlueDataCatalog_node1676574482997 = glueContext.write_dynamic_frame.from_catalog(
-    frame=DropFields_node1676402768067,
+AWSGlueDataCatalog_node1076474682192 = glueContext.write_dynamic_frame.from_catalog(
+    frame=DropFields_node1376402728068,
     database="project",
     table_name="accelerometer_trusted",
     transformation_ctx="AWSGlueDataCatalog_node1676574482997",
